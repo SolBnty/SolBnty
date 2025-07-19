@@ -5,9 +5,11 @@ use crate::state::BountyEscrow;
 #[derive(Accounts)]
 #[instruction(seed: u64)]
 pub struct InitBounty<'info> {
+    // Company creating the bounty
     #[account(mut)]
     pub company: Signer<'info>,
 
+    // Escrow account
     #[account(
         init,
         payer = company,
@@ -17,6 +19,7 @@ pub struct InitBounty<'info> {
     )]
     pub bounty: Account<'info, BountyEscrow>,
 
+    // Vault account owned by escrow
     #[account(
         mut,
         seeds = [b"vault", bounty.key().as_ref()],
@@ -28,6 +31,7 @@ pub struct InitBounty<'info> {
 }
 
 impl<'info> InitBounty<'info> {
+    // Set fields of BountyEscrow struct
     pub fn initialize_escrow(&mut self, 
         seed: u64, 
         total_amount: u64,
@@ -55,6 +59,7 @@ impl<'info> InitBounty<'info> {
         Ok(())
     }
 
+    // Transfer bounty funds from company to the vault
     pub fn transfer_sol_to_vault(&mut self) -> Result<()> {
         let cpi_accounts = Transfer {
             from: self.company.to_account_info(),
