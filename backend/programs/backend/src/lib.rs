@@ -2,6 +2,12 @@
 
 use anchor_lang::prelude::*;
 
+pub mod state;
+pub mod instructions;
+
+use state::*;
+use instructions::*;
+
 declare_id!("2tdojmL85Ri9CzW8K8m7cXHAfxVDzSBjRhpG4fzF9biD");
 
 #[program]
