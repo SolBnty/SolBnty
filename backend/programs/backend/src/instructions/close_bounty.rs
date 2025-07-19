@@ -3,7 +3,7 @@ use anchor_lang::{prelude::*, system_program::{transfer, Transfer}};
 use crate::state::BountyEscrow;
 
 #[derive(Accounts)]
-pub struct Close<'info> {
+pub struct CloseBounty<'info> {
     // Company which created the bounty
     #[account(mut)]
     pub company: Signer<'info>,
@@ -28,7 +28,7 @@ pub struct Close<'info> {
     pub system_program: Program<'info, System>
 }
 
-impl<'info> Close<'info> {
+impl<'info> CloseBounty<'info> {
     pub fn refund_vault(&mut self) -> Result<()> {
         // Setup CPI context
         let cpi_accounts = Transfer {
@@ -51,7 +51,7 @@ impl<'info> Close<'info> {
 
         // Deactivate bounty
         self.bounty.is_active = false;
-        
+
         Ok(())
     }
 }

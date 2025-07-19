@@ -1,4 +1,4 @@
-use anchor_lang::{prelude::*, solana_program::clock::UnixTimestamp, system_program::{transfer, Transfer}};
+use anchor_lang::{prelude::*, system_program::{transfer, Transfer}};
 
 use crate::{state::BountyEscrow, error::ErrorCode};
 
