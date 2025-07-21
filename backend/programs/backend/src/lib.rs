@@ -36,4 +36,16 @@ pub mod backend {
     pub fn close_bounty(ctx: Context<CloseBounty>) -> Result<()> {
         ctx.accounts.refund_vault()
     }
+
+    pub fn update_bounty(
+        ctx: Context<UpdateBounty>,
+        total_amount: Option<u64>,
+        amount_per_completion: Option<u64>,
+        max_completions: Option<u32>,
+        current_completions: Option<u32>,
+        uri: Option<String>, 
+        expiry: Option<Option<i64>>,
+    ) -> Result<()> {
+        ctx.accounts.update_bounty(total_amount, amount_per_completion, max_completions, current_completions, uri, expiry)
+    }
 }
