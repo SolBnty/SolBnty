@@ -22,10 +22,13 @@ pub mod backend {
         amount_per_completion: u64,
         max_completions: u32,
         current_completions: u32,
-        uri: String, 
-        expiry: Option<i64>
+        latitude: f64,
+        longitude: f64,
+        title: String, 
+        description: String,
+        expiry: Option<i64>,
     ) -> Result<()> {
-        ctx.accounts.initialize_escrow(seed, total_amount, amount_per_completion, max_completions, current_completions, uri, &ctx.bumps, expiry)?;
+        ctx.accounts.initialize_escrow(seed, total_amount, amount_per_completion, max_completions, current_completions, longitude, latitude, title, description, &ctx.bumps, expiry)?;
         ctx.accounts.transfer_sol_to_vault()
     }
 
@@ -43,9 +46,12 @@ pub mod backend {
         amount_per_completion: Option<u64>,
         max_completions: Option<u32>,
         current_completions: Option<u32>,
-        uri: Option<String>, 
+        longitude: Option<f64>,
+        latitude: Option<f64>,
+        title: Option<String>, 
+        description: Option<String>,
         expiry: Option<Option<i64>>,
     ) -> Result<()> {
-        ctx.accounts.update_bounty(total_amount, amount_per_completion, max_completions, current_completions, uri, expiry)
+        ctx.accounts.update_bounty(total_amount, amount_per_completion, max_completions, current_completions, longitude, latitude, title, description, expiry)
     }
 }

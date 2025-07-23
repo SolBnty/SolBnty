@@ -11,14 +11,15 @@ pub struct BountyEscrow {
     pub max_completions: u32, // Maximum number of completions
     pub current_completions: u32, // Current number of completions
     pub is_active: bool, // If bounty is active or not
-    #[max_len(32)]
-    pub uri: String, // Arweave metadata link
+    pub latitude: f64,
+    pub longitude: f64,
+    #[max_len(30)]
+    pub title: String, // Title of bounty
+    #[max_len(125)]
+    pub description: String, // Description of bounty
     pub bump: u8, // PDA bump
     pub vault_bump: u8,
 
-    // Items for arweave json file
-    // pub latitude: f64,
-    // pub longitute: f64,
-    // pub title: String,
-    // pub description: String,
+    // #[max_len(32)]
+    // pub uri: String, // Arweave metadata link
 }

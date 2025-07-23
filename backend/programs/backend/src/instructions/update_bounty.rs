@@ -35,7 +35,10 @@ impl<'info> UpdateBounty<'info> {
         amount_per_completion: Option<u64>,
         max_completions: Option<u32>,
         current_completions: Option<u32>,
-        uri: Option<String>, 
+        longitude: Option<f64>,
+        latitude: Option<f64>,
+        title: Option<String>, 
+        description: Option<String>,
         expiry: Option<Option<i64>>, // Option wrapped for nullable field updates
     ) -> Result<()>{
         // Update bounty data
@@ -54,8 +57,17 @@ impl<'info> UpdateBounty<'info> {
         if let Some(c) = current_completions {
             self.bounty.current_completions = c;
         }
-        if let Some(u) = uri {
-            self.bounty.uri = u;
+        if let Some(lat) = latitude {
+            self.bounty.latitude = lat;
+        }
+        if let Some(long) = longitude {
+            self.bounty.longitude = long;
+        }
+        if let Some(t) = title {
+            self.bounty.title = t;
+        }
+        if let Some(d) = description {
+            self.bounty.description = d;
         }
         if let Some(e) = expiry {
             self.bounty.expiry = e;
