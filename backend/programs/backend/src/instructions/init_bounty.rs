@@ -38,7 +38,10 @@ impl<'info> InitBounty<'info> {
         amount_per_completion: u64,
         max_completions: u32,
         current_completions: u32,
-        uri: String, 
+        latitude: f64,
+        longitude: f64,
+        title: String, 
+        description: String,
         bumps: &InitBountyBumps,
         expiry: Option<i64>,
     ) -> Result<()> {
@@ -51,7 +54,10 @@ impl<'info> InitBounty<'info> {
             max_completions, 
             current_completions, 
             is_active: true, 
-            uri, 
+            latitude,
+            longitude,
+            title,
+            description, 
             bump: bumps.bounty, 
             vault_bump: bumps.vault, 
         });
